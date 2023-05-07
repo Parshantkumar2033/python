@@ -1,3 +1,32 @@
+# reversing a list
+# import math
+# class rev:
+#     def __init__(self, low, high, mid, arr):
+#         self.low = low
+#         self.high = high
+#         self.mid = mid
+#         self.arr = arr
+
+#     def swap(self, a, b):
+#         self.a = a
+#         self.b = b
+#         self.arr[self.a], self.arr[self.b] = self.arr[self.b], self.arr[self.a]
+
+#     def reverse(self):
+#         for i in range(0, self.mid):
+#             self.swap(self.low , (self.high - 1))
+#             self.low = self.low + 1
+#             self.high = self.high - 1
+#         return self.arr
+# array = [1, 2, 3, 4, 5]
+# low = 0
+# high = len(array)
+# mid = math.ceil((low + high)/2)  
+# rev = rev(low, high, mid, array)
+# list = rev.reverse()
+# for i in list:
+#     print(i, end = " ")
+
 # from queue import LifoQueue
 # class Solution:
 #     def compare(): # i is the index at which we are comparing in the string
@@ -213,6 +242,8 @@ class Solution:
 # string = 'PanlindromexemordnilnaP'
 # solution = Solution()
 # res = solution.palindrome(string)
+
+
 # print(res)        
 
 #     def twoStack(self, list):

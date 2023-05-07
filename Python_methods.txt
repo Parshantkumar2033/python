@@ -40,6 +40,18 @@
 	my_list = my_string.split(',')
 	print(my_list)  # Output: ['apple', 'banana', 'cherry']
 
+10. ACCESSING ATTRIBUTES OF ANOTHER CLASS 
+	getattr() − A python method used to access the attribute of a class.
+	hasattr()  − A python method used to verify the presence of an attribute in a class.
+	setattr() − A python method used to set an additional attribute in a class.
+
+11.	__str__(self) 	: 	represent the object in a string
+	object = Class()
+	a = str(object)   # callin __str__()
+	__repr__(self)	:	represent the object in programatic way
+
+12.id()    : returns the identity 
+	
 NUMPY:
 	.size    :will give no. of elements present in the array
 
@@ -131,18 +143,30 @@ STRINGS:
 	upper()				Converts a string into upper case
 	zfill()				Fills the string with a specified number of 0 values at the beginning
 
+	#	my_string = "Hi!? I!? love!? Python!?"
+		my_new_string = my_string.replace("!","").replace("?","")
+
+		REMOVING OF CHARACTER CAN ALSO BE DONE USING THE LIBRARY "re"
+		import re
+		my_string = "Hi!? I!? love!? Python!?"	
+		my_new_string = re.sub('[!?]',"",my_string)
+
+
+	#	Node.appendChild()	 only accepts Node objects. 
+		Element.append()	 has no return value, whereas Node.appendChild() returns the appended Node object.
+
 
 LIST :
-	append()Used for appending and adding elements to the end of the List. 
-	copy()	It returns a shallow copy of a list
-	clear()	This method is used for removing all items from the list. 
-	count()	This methods count the elements
-	extend() Adds each element of the iterable to the end of the List
-	index()	Returns the lowest index where the element appears.  
-	pop()	 Removes and returns the last value from the List or the given index value. 
-	reverse() Reverses objects of the List in place.
-	sort()	Sort a List in ascending, descending, or user-defined order
-	max()	Calculates maximum of all the elements of List
+	append()	Used for appending and adding elements to the end of the List. 
+	copy()		It returns a shallow copy of a list
+	clear()		This method is used for removing all items from the list. 
+	count()		This methods count the elements
+	extend() 	Adds each element of the iterable to the end of the List
+	index()		Returns the lowest index where the element appears.  
+	pop()	 	Removes and returns the last value from the List or the given index value. 
+	reverse() 	Reverses objects of the List in place.
+	sort()		Sort a List in ascending, descending, or user-defined order
+	max()		Calculates maximum of all the elements of List
 
 	del[a:b]  deletes all the elements in range "a" till "b"
 	insert(a, x) position and element to be added 
@@ -240,3 +264,115 @@ MATH(MODULE)
 	math.pi: 	Returns the constant value of pi (3.141592653589793).
 
 	math.e:	 	Returns the constant value of e (2.718281828459045).
+
+
+QUEUE(USING DEQUEUE):
+
+	class collections.deque([iterable[, maxlen]])
+
+	append(x)		Add x to the right side of the deque.
+
+	appendleft(x)			Add x to the left side of the deque.
+
+	clear()			Remove all elements from the deque leaving it with length 0.
+
+	copy()			Create a shallow copy of the deque.
+
+	count(x)			Count the number of deque elements equal to x.
+
+	extend(iterable)			Extend the right side of the deque by appending elements from the iterable argument.
+
+	extendleft(iterable)			Extend the left side of the deque by appending elements from iterable. 
+									Note, the series of left appends results in reversing the order of elements in the iterable argument.
+
+	index(x[, start[, stop]])			Return the position of x in the deque (at or after index start and before index stop). 
+										Returns the first match or raises ValueError if not found.
+
+	insert(i, x)			Insert x into the deque at position i.
+							If the insertion would cause a bounded deque to grow beyond maxlen, an IndexError is raised.
+
+	pop()			Remove and return an element from the right side of the deque. If no elements are present, raises an IndexError.
+
+	popleft()			Remove and return an element from the left side of the deque. If no elements are present, raises an IndexError.
+
+	remove(value)			Remove the first occurrence of value. If not found, raises a ValueError.
+
+	reverse()			Reverse the elements of the deque in-place and then return None.
+
+	rotate(n=1)			Rotate the deque n steps to the right. If n is negative, rotate to the left.
+						When the deque is not empty, rotating one step to the right is 
+						equivalent to d.appendleft(d.pop()), and rotating one step to the left is equivalent to d.append(d.popleft()).
+
+	Deque objects also provide one read-only attribute:
+
+	maxlen			Maximum size of a deque or None if unbounded.
+
+ASYNCHRONOUS ITERATORS:
+# define an asynchronous iterator
+	class AsyncIterator():
+		# constructor, define some state
+		def __init__(self):
+			self.counter = 0
+	
+		# create an instance of the iterator
+		def __aiter__(self):
+			return self
+	
+		# return the next awaitable
+		async def __anext__(self):
+			# check for no further items
+			if self.counter >= 10:
+				raise StopAsyncIteration
+			# increment the counter
+			self.counter += 1
+			# return the counter value
+			return self.counter
+
+# create the iterator
+		it = AsyncIterator()
+
+		# get an awaitable for one step of the iterator
+		awaitable = anext(it)
+		# execute the one step of the iterator and get the result
+		result = await awaitable
+
+# example of one step of an  asynchronous iterator with anext()
+		# SuperFastPython.com
+		# example of one step of an asynchronous iterator
+		import asyncio
+		
+		# define an asynchronous iterator
+		class AsyncIterator():
+			# constructor, define some state
+			def __init__(self):
+				self.counter = 0
+		
+			# create an instance of the iterator
+			def __aiter__(self):
+				return self
+		
+			# return the next awaitable
+			async def __anext__(self):
+				# check for no further items
+				if self.counter >= 10:
+					raise StopAsyncIteration
+				# increment the counter
+				self.counter += 1
+				# simulate work
+				await asyncio.sleep(1)
+				# return the counter value
+				return self.counter
+		
+		# main coroutine
+		async def main():
+			# create the async iterator
+			it = AsyncIterator()
+			# step the iterator one iteration
+			awaitable = anext(it)
+			# get the result from one iteration
+			result = await awaitable
+			# report the result
+			print(result)
+		
+		# execute the asyncio program
+		asyncio.run(main())
