@@ -1,89 +1,111 @@
 # IMPLEMENTATION OF SINGLY LINKED LIST
 
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.next = None
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
-# class Single:
-#     def __init__(self):
-#         self.head = None
+class Single:
+    def __init__(self):
+        self.head = None
 
-#     def traversal(self):
-#         if self.head is None:
-#             print("Empty linked list")
-#         else:
-#             a = self.head
-#             while a is not None:
-#                 print(a.data, end = " ")
-#                 a = a.next
+    def traversal(self):
+        if self.head is None:
+            print("Empty linked list")
+        else:
+            a = self.head
+            while a is not None:
+                print(a.data, end = " ")
+                a = a.next
 
-#     def insert_at_beg(self, ndata):
-#         print()
-#         new = Node(ndata)
-#         new.next = self.head
-#         self.head = new
+    def insert_at_beg(self, ndata):
+        print()
+        new = Node(ndata)
+        new.next = self.head
+        self.head = new
     
-#     def insert_at_end(self, ndata):
-#         print()
-#         new = Node(ndata)
-#         a = self.head
-#         while a.next is not None:
-#             a = a.next
-#         a.next = new
+    def insert_at_end(self, ndata):
+        print()
+        new = Node(ndata)
+        a = self.head
+        while a.next is not None:
+            a = a.next
+        a.next = new
 
-#     def insert_at_sep(self, pos, ndata):
-#         print()
-#         new = Node(ndata)
-#         a = self.head
-#         for i in range(1, pos - 1):
-#             a = a.next
-#         new.next = a.next         
-#         a.next = new
+    def insert_at_sep(self, pos, ndata):
+        print()
+        new = Node(ndata)
+        a = self.head
+        for i in range(1, pos - 1):
+            a = a.next
+        new.next = a.next         
+        a.next = new
     
-#     def del_at_beg(self):
-#         print()
-#         a = self.head
-#         self.head = a.next
-#         a.next = None
+    def del_at_beg(self):
+        print()
+        a = self.head
+        self.head = a.next
+        # temp = a
+        a.next = None
+        return a.data
     
-#     def del_at_end(self):
-#         print()
-#         prev = self.head
-#         n = self.head.next
-#         while n.next is not None:
-#             n = n.next
-#             prev = prev.next
-#         prev.next = None
+    def del_at_end(self):
+        print()
+        prev = self.head
+        n = self.head.next
+        while n.next is not None:
+            n = n.next
+            prev = prev.next
+        prev.next = None
+        return n.data
 
-#     def del_at_sep(self, pos):
-#         print()
-#         p1 = self.head.next
-#         p2 = self.head
-#         for i in range(1, pos - 1):
-#             p1 = p1.next
-#             p2 = p2.next
-#         p2.next = p1.next
-#         p1.next = None      
+    def del_at_sep(self, pos):
+        print()
+        p1 = self.head.next
+        p2 = self.head
+        for i in range(1, pos - 1):
+            p1 = p1.next
+            p2 = p2.next
+        p2.next = p1.next
+        p1.next = None  
+        return p1.data
 
-# ls = Single() 
-# n1 = Node(2)
-# ls.head = n1
-# n2 = Node(4)
-# n1.next = n2
-# n3 = Node(5)
-# n2.next = n3
-# n4 = Node(8)
-# n3.next = n4
-# ls.traversal()
-# ls.insert_at_beg(10)
-# ls.insert_at_end(15)
-# ls.insert_at_end(17)
-# ls.traversal()
-# ls.del_at_end()
-# ls.traversal()
-# ls.del_at_sep(3)
-# ls.traversal()
+    def insert(self, new):
+        if self.head is None:
+            self.head = new
+            new.next = None
+            return 
+        # temp = self.head              # we don't need this 
+        # if temp.next is None:
+        #     temp.next = new
+        #     new.next = None
+        #     return
+        a = self.head
+        while a.next is not None:
+            a = a.next 
+        a.next = new
+        new.next = None  
+
+n1 = Node(1)
+n2 = Node(2)
+n3 = Node(3)
+n4 = Node(4)
+sll = Single()
+sll.insert(n1)
+sll.insert(n2)
+sll.insert(n3)
+sll.insert(n4)
+sll.insert_at_beg(8)
+sll.insert_at_beg(9)
+sll.insert_at_end(6)
+sll.insert_at_sep(3, 11)
+sll.traversal()
+print("del_at_beg : ", sll.del_at_beg())
+sll.traversal()
+print('del_at_end : ', sll.del_at_end())
+sll.traversal()
+print("del_at_sep : ", sll.del_at_sep(2))
+sll.traversal()
 
 # IMPLEMENTING DOUBLY LINKED LIST
 # modified

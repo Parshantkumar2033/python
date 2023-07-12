@@ -1,3 +1,28 @@
+# to check for even or odd :   preferable is to use      if (n & 1 == 0)
+
+# loop :-
+	1. enumerate()   :   print index along with the value
+				for key, value in enumerate(['The', 'Big', 'Bang', 'Theory']):
+    				print(key, value)
+
+	2. zip()    :   combines two containers sequentially. e.g. list-list or dict-dict
+				questions = ['name', 'colour', 'shape']
+				answers = ['apple', 'red', 'a circle']
+				for question, answer in zip(questions, answers):
+					print('What is your {0}?  I am {1}.'.format(question, answer))
+
+
+# to create an array in python
+	import array as arr
+	a = arr.array('data-type', list_of_values)
+
+	# b/B : signed/unsigned char
+	# i/I : signed/unsigned int
+	# l/L : signed/unsigned long
+	# q/Q : signed/unsigned long long
+	# d   : double
+	# f   : float
+
 1. {variable_name}  to take the value of variable inside the print("") statement
 				e.g. print(f"the value of {size} is")
 
@@ -165,7 +190,7 @@ LIST :
 	index()		Returns the lowest index where the element appears.  
 	pop()	 	Removes and returns the last value from the List or the given index value. 
 	reverse() 	Reverses objects of the List in place.
-	sort()		Sort a List in ascending, descending, or user-defined order
+	list.sort(reverse=True|False, key=myFunc)   :	Sort a List in ascending, descending, or user-defined order
 	max()		Calculates maximum of all the elements of List
 
 	del[a:b]  deletes all the elements in range "a" till "b"
